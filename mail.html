@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lora&display=swap" rel="stylesheet">
+    <title>Letter for Aron</title>
+    <style>
+         :root {
+            --primary: #D1D3CF;
+            --bg-color: #757081;
+            --bg-envelope-color: #6B82A8;
+            --envelope-tab: #6C4F70;
+            --envelope-cover: #39324B;
+            --shadow-color: rgba(0, 0, 0, 0.2);
+            --txt-color: #15062c;
+            --heart-color: #15062c;
+        }
+        
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: var(--bg-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .container {
+            height: 100vh;
+            display: grid;
+            place-items: center;
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+        
+        .container.show {
+            opacity: 1;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        .envelope-wrapper {
+            background: var(--bg-envelope-color);
+            box-shadow: 0 0 40px var(--shadow-color);
+        }
+        
+        .envelope-wrapper>.envelope {
+            position: relative;
+            width: 300px;
+            height: 230px;
+        }
+        
+        .envelope-wrapper>.envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            z-index: 2;
+            border-top: 130px solid var(--envelope-tab);
+            border-right: 150px solid transparent;
+            border-left: 150px solid transparent;
+            transform-origin: top;
+            transition: all 0.5s ease-in-out 0.7s;
+        }
+        
+        .envelope-wrapper>.envelope::after {
+            content: "";
+            position: absolute;
+            z-index: 2;
+            width: 0px;
+            height: 0px;
+            border-top: 130px solid transparent;
+            border-right: 150px solid var(--envelope-cover);
+            border-bottom: 100px solid var(--envelope-cover);
+            border-left: 150px solid var(--envelope-cover);
+        }
+        
+        .envelope>.letter {
+            position: absolute;
+            right: 20%;
+            bottom: 0;
+            width: 54%;
+            height: 80%;
+            background: var(--primary);
+            text-align: center;
+            transition: all 1s ease-in-out;
+            box-shadow: 0 0 5px var(--shadow-color);
+            padding: 20px 10px;
+        }
+        
+        .envelope>.letter>.text {
+            font-family: 'Lora', serif;
+            font-weight: 400;
+            font-style: normal;
+            color: var(--txt-color);
+            text-align: left;
+            font-size: 9px;
+        }
+        
+        .heart {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 15px;
+            height: 15px;
+            background: var(--heart-color);
+            z-index: 4;
+            transform: translate(-50%, -20%) rotate(45deg);
+            transition: transform 0.5s ease-in-out 1s;
+            box-shadow: 0 1px 6px var(--shadow-color);
+            cursor: pointer;
+        }
+        
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background-color: var(--heart-color);
+            border-radius: 50%;
+        }
+        
+        .heart:before {
+            top: -7.5px;
+        }
+        
+        .heart:after {
+            right: 7.5px;
+        }
+        
+        .flap>.envelope:before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+        
+        .flap>.envelope>.letter {
+            bottom: 100px;
+            transform: scale(1.5);
+            transition-delay: 1s;
+        }
+        
+        .flap>.heart {
+            transform: rotate(90deg);
+            transition-delay: 0.4s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="envelope-wrapper">
+            <div class="envelope">
+                <div class="letter">
+                    <div class="text">
+                        <strong>22-04-2024.</strong>
+                        <p>
+                            selamat tanggal 22, pacarku.
+                        </p>
+                        <p>
+                            makasi ya udah selalu nemenin aku. i'm so grateful that i met you. semoga kita bisa sama-sama terus. i love you sayang, i really do -iku.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="heart"></div>
+        </div>
+    </div>
+    <script>
+        const envelope = document.querySelector('.envelope-wrapper');
+        envelope.addEventListener('click', () => {
+            envelope.classList.toggle('flap');
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            document.querySelector('.container').classList.add('show');
+        });
+    </script>
+</body>
+
+</html>
